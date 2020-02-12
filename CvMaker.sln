@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CvMaker.Entities", "CvMaker.Entities\CvMaker.Entities.csproj", "{82452BCB-B093-49E1-9961-B44B5741B6A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CvMaker.DataAccess", "CvMaker.DataAccess\CvMaker.DataAccess.csproj", "{C302B5F7-FFF0-459A-BC3E-562231A40C14}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CvMaker.Business", "CvMaker.Business\CvMaker.Business.csproj", "{9BDECE50-777F-4BCD-A438-78BDC1A1C560}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CvMaker.Core", "CvMaker.Core\CvMaker.Core.csproj", "{1DA281AA-0B22-4003-AE46-430C460BCD04}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CvMakerWebAPI", "CvMakerWebAPI\CvMakerWebAPI.csproj", "{F5D0E1F1-676A-493C-A0EA-715CB8AC95B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82452BCB-B093-49E1-9961-B44B5741B6A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82452BCB-B093-49E1-9961-B44B5741B6A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82452BCB-B093-49E1-9961-B44B5741B6A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82452BCB-B093-49E1-9961-B44B5741B6A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C302B5F7-FFF0-459A-BC3E-562231A40C14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C302B5F7-FFF0-459A-BC3E-562231A40C14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C302B5F7-FFF0-459A-BC3E-562231A40C14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C302B5F7-FFF0-459A-BC3E-562231A40C14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BDECE50-777F-4BCD-A438-78BDC1A1C560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BDECE50-777F-4BCD-A438-78BDC1A1C560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BDECE50-777F-4BCD-A438-78BDC1A1C560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BDECE50-777F-4BCD-A438-78BDC1A1C560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DA281AA-0B22-4003-AE46-430C460BCD04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DA281AA-0B22-4003-AE46-430C460BCD04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DA281AA-0B22-4003-AE46-430C460BCD04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DA281AA-0B22-4003-AE46-430C460BCD04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5D0E1F1-676A-493C-A0EA-715CB8AC95B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5D0E1F1-676A-493C-A0EA-715CB8AC95B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5D0E1F1-676A-493C-A0EA-715CB8AC95B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5D0E1F1-676A-493C-A0EA-715CB8AC95B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E58832E3-5A53-418E-9CE9-F6E6EFF2E5BA}
+	EndGlobalSection
+EndGlobal
