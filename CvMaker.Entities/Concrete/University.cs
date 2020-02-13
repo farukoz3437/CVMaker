@@ -12,7 +12,10 @@ namespace CvMaker.Entities.Concrete
         public int UniversityId { get; set; }
         public string UniversityName { get; set; }
 
+        public ICollection<UserUniversity> UserUniversities { get; set; }
+
         public virtual IList<UniversityFaculty> UniversityFaculties { get; set; }
-        public EducationUniversity EducationUniversity { get; set; }
+
+       
     }
 }

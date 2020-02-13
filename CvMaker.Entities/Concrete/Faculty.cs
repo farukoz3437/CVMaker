@@ -9,7 +9,7 @@ namespace CvMaker.Entities.Concrete
     public class Faculty:IEntity
     {
         [Key]
-        public int FakultyId { get; set; }
+        public int FacultyId { get; set; }
         public string FakultyName { get; set; }
 
         public virtual ICollection<Department> Departments { get; set; }

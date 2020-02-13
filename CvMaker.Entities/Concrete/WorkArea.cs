@@ -12,6 +12,6 @@ namespace CvMaker.Entities.Concrete
         public int WorkAreaId{ get; set; }
         public int WorkAreaName{ get; set; }
 
-        public virtual ICollection<WorkAreaFirmSector> WorkAreaFirmSectors { get; set; }
+        public virtual ICollection<FirmSectorWorkArea> FirmSectorWorkAreas { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace CvMaker.Entities.Concrete
         public int LanguageId { get; set; }
         public string LanguageName { get; set; }
 
-        
-        public UserLanguageStatus UserLanguageStatus { get; set; }
+        public ICollection<UserUniversity> UserUniversities { get; set; }
+        public ICollection<UserLanguageStatus> UserLanguageStatuses { get; set; }
     }
 }

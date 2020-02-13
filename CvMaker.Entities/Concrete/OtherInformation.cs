@@ -14,5 +14,8 @@ namespace CvMaker.Entities.Concrete
         public string BloodGroup { get; set; }
         public string Smoking { get; set; }
         public string SalaryExpectation { get; set; } //Maaş beklentisi
+
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
     }
 }

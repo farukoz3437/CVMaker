@@ -11,5 +11,12 @@ namespace CvMaker.Entities.Concrete
         [Key]
         public int CountryId { get; set; }
         public string CountryName { get; set; }
+
+        public virtual ICollection<City> Cities { get; set; }
+
+        public virtual ICollection<Address> Addresses { get; set; }
+
+
+
     }
 }

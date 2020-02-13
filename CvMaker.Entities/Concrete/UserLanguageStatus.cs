@@ -15,9 +15,11 @@ namespace CvMaker.Entities.Concrete
         public string Writing { get; set; }
 
         public int UserId { get; set; }
-        public int LanguageId { get; set; }
+        public virtual User User { get; set; }
 
-        public User User { get; set; }
-        public Language Language { get; set; }
+
+        public int LanguageId { get; set; }
+        public virtual Language Language { get; set; }
+
     }
 }

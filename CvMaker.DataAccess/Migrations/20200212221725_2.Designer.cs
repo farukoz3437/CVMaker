@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CvMaker.DataAccess.Migrations
 {
     [DbContext(typeof(CvMakerContext))]
-    [Migration("20200211130804_2")]
+    [Migration("20200212221725_2")]
     partial class _2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,10 +31,25 @@ namespace CvMaker.DataAccess.Migrations
                     b.Property<string>("AddressName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DistrictId")
+                        .HasColumnType("int");
+
                     b.Property<int>("PostaCode")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("AddressId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Addresses");
                 });
@@ -55,10 +70,15 @@ namespace CvMaker.DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FromOrganization")
+                    b.Property<string>("Organization")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("CertificateId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Certificates");
                 });
@@ -73,34 +93,45 @@ namespace CvMaker.DataAccess.Migrations
                     b.Property<string>("CityName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
                     b.HasKey("CityId");
+
+                    b.HasIndex("CountryId");
 
                     b.ToTable("Cities");
                 });
 
-            modelBuilder.Entity("CvMaker.Entities.Concrete.Contatct", b =>
+            modelBuilder.Entity("CvMaker.Entities.Concrete.Contact", b =>
                 {
                     b.Property<int>("ContatctId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CellPhone")
+                        .HasColumnType("int");
+
                     b.Property<string>("EPostaAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("HomePhoneNumber")
+                    b.Property<int>("HomePhone")
                         .HasColumnType("int");
 
                     b.Property<string>("LinkedinAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PhoneNumber")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<string>("WebAddress")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ContatctId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Contatcts");
                 });
@@ -130,9 +161,34 @@ namespace CvMaker.DataAccess.Migrations
                     b.Property<string>("DepartmentName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("FacultyId")
+                        .HasColumnType("int");
+
                     b.HasKey("DepartmentId");
 
+                    b.HasIndex("FacultyId");
+
                     b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.District", b =>
+                {
+                    b.Property<int>("DistrictId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DistrictName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DistrictId");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("Districts");
                 });
 
             modelBuilder.Entity("CvMaker.Entities.Concrete.DriverLisance", b =>
@@ -158,55 +214,19 @@ namespace CvMaker.DataAccess.Migrations
                     b.ToTable("DriverLisances");
                 });
 
-            modelBuilder.Entity("CvMaker.Entities.Concrete.EducationHighSchool", b =>
+            modelBuilder.Entity("CvMaker.Entities.Concrete.EducationLanguage", b =>
                 {
-                    b.Property<int>("HighschoolId")
+                    b.Property<int>("EducationLanguageId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("HighschoolDegree")
-                        .HasColumnType("int");
-
-                    b.Property<string>("HighschoolDepartment")
+                    b.Property<string>("LanguageName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HighschoolName")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("EducationLanguageId");
 
-                    b.Property<string>("HighschoolType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("HighschoolId");
-
-                    b.ToTable("EducationHighSchools");
-                });
-
-            modelBuilder.Entity("CvMaker.Entities.Concrete.EducationUniversity", b =>
-                {
-                    b.Property<int>("EducationUniversityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("LisanceDegree")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("EducationUniversityId");
-
-                    b.ToTable("EducationUniversities");
+                    b.ToTable("EducationLanguages");
                 });
 
             modelBuilder.Entity("CvMaker.Entities.Concrete.Exam", b =>
@@ -231,14 +251,19 @@ namespace CvMaker.DataAccess.Migrations
                     b.Property<string>("OrganizationName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("ExamId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Exams");
                 });
 
             modelBuilder.Entity("CvMaker.Entities.Concrete.Faculty", b =>
                 {
-                    b.Property<int>("FakultyId")
+                    b.Property<int>("FacultyId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -246,7 +271,7 @@ namespace CvMaker.DataAccess.Migrations
                     b.Property<string>("FakultyName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("FakultyId");
+                    b.HasKey("FacultyId");
 
                     b.ToTable("Faculties");
                 });
@@ -276,36 +301,14 @@ namespace CvMaker.DataAccess.Migrations
                     b.Property<string>("LanguageName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("LanguageId");
-
-                    b.ToTable("Languages");
-                });
-
-            modelBuilder.Entity("CvMaker.Entities.Concrete.MilitaryState", b =>
-                {
-                    b.Property<int>("MilitaryStateId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DischargeDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MilitaryStatus")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("MilitaryStateId");
+                    b.HasKey("LanguageId");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
-                    b.ToTable("MilitaryStates");
+                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("CvMaker.Entities.Concrete.Nationality", b =>
@@ -318,7 +321,12 @@ namespace CvMaker.DataAccess.Migrations
                     b.Property<string>("CountryName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserInformationId")
+                        .HasColumnType("int");
+
                     b.HasKey("NationalityId");
+
+                    b.HasIndex("UserInformationId");
 
                     b.ToTable("Nationalities");
                 });
@@ -342,7 +350,13 @@ namespace CvMaker.DataAccess.Migrations
                     b.Property<string>("Smoking")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("OtherInformationId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("OtherInformations");
                 });
@@ -354,26 +368,8 @@ namespace CvMaker.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CertificateId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EducationId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExperienceId")
-                        .HasColumnType("int");
-
                     b.Property<string>("PersonelName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PersonelSurname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
 
                     b.HasKey("PersonelId");
 
@@ -402,10 +398,15 @@ namespace CvMaker.DataAccess.Migrations
                     b.Property<string>("ReferenceType")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("WorkOrganization")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReferenceId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("References");
                 });
@@ -423,6 +424,24 @@ namespace CvMaker.DataAccess.Migrations
                     b.HasKey("UniversityId");
 
                     b.ToTable("Universities");
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.UniversityFaculty", b =>
+                {
+                    b.Property<int>("UniversityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FacultyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UniversityId", "DepartmentId");
+
+                    b.HasIndex("FacultyId");
+
+                    b.ToTable("UniversityFaculties");
                 });
 
             modelBuilder.Entity("CvMaker.Entities.Concrete.UniversityType", b =>
@@ -458,6 +477,42 @@ namespace CvMaker.DataAccess.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("CvMaker.Entities.Concrete.UserHighschool", b =>
+                {
+                    b.Property<int>("UserHighschoolId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("HighschoolDegree")
+                        .HasColumnType("float");
+
+                    b.Property<string>("HighschoolDepartment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HighschoolName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HighschoolType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserHighschoolId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("UserHighschools");
+                });
+
             modelBuilder.Entity("CvMaker.Entities.Concrete.UserInformation", b =>
                 {
                     b.Property<int>("UserInformationId")
@@ -465,10 +520,16 @@ namespace CvMaker.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateOfBirth")
+                    b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("BirthPlace")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("DisabilitySituation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DischargeDate")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Gender")
@@ -480,11 +541,17 @@ namespace CvMaker.DataAccess.Migrations
                     b.Property<string>("MaritalStatus")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PlaceOfBirth")
+                    b.Property<string>("MilitaryStatus")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TotalExperience")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
@@ -492,9 +559,30 @@ namespace CvMaker.DataAccess.Migrations
                     b.Property<string>("UserSurname")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("WorkState")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("UserInformationId");
 
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
                     b.ToTable("UserInformations");
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.UserLanguage", b =>
+                {
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserLanguageStatusId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LanguageId", "UserLanguageStatusId");
+
+                    b.HasIndex("UserLanguageStatusId");
+
+                    b.ToTable("UserLanguages");
                 });
 
             modelBuilder.Entity("CvMaker.Entities.Concrete.UserLanguageStatus", b =>
@@ -510,12 +598,58 @@ namespace CvMaker.DataAccess.Migrations
                     b.Property<string>("Speaking")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Writing")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserLanguageStatusId");
 
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
                     b.ToTable("UserLanguageStatus");
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.UserUniversity", b =>
+                {
+                    b.Property<int>("UserUniversityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EducationLanguageId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FacultyId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("LisanceDegree")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UniversityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserUniversityId");
+
+                    b.HasIndex("EducationLanguageId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserUniversities");
                 });
 
             modelBuilder.Entity("CvMaker.Entities.Concrete.WorkArea", b =>
@@ -533,25 +667,88 @@ namespace CvMaker.DataAccess.Migrations
                     b.ToTable("WorkAreas");
                 });
 
-            modelBuilder.Entity("CvMaker.Entities.Concrete.WorkInformation", b =>
+            modelBuilder.Entity("CvMaker.Entities.Concrete.WorkHistory", b =>
                 {
-                    b.Property<int>("WorkInformationId")
+                    b.Property<int>("WorkHistoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirmName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("MannerOfWork")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TotalExperience")
+                    b.Property<string>("Position")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WorkStatus")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
 
-                    b.HasKey("WorkInformationId");
+                    b.HasKey("WorkHistoryId");
 
-                    b.ToTable("WorkInformations");
+                    b.ToTable("WorkHistories");
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.Address", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.User", "User")
+                        .WithOne("Address")
+                        .HasForeignKey("CvMaker.Entities.Concrete.Address", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.Certificate", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.User", "User")
+                        .WithMany("Certificates")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.City", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.Country", "Country")
+                        .WithMany("Cities")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.Contact", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.User", "User")
+                        .WithOne("Contact")
+                        .HasForeignKey("CvMaker.Entities.Concrete.Contact", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.Department", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.Faculty", "Faculty")
+                        .WithMany("Departments")
+                        .HasForeignKey("FacultyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.District", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.City", "City")
+                        .WithMany("Districts")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CvMaker.Entities.Concrete.DriverLisance", b =>
@@ -563,11 +760,115 @@ namespace CvMaker.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CvMaker.Entities.Concrete.MilitaryState", b =>
+            modelBuilder.Entity("CvMaker.Entities.Concrete.Exam", b =>
                 {
                     b.HasOne("CvMaker.Entities.Concrete.User", "User")
-                        .WithOne("MilitaryState")
-                        .HasForeignKey("CvMaker.Entities.Concrete.MilitaryState", "UserId")
+                        .WithMany("Exams")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.Language", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.User", null)
+                        .WithMany("Languages")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.Nationality", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.UserInformation", "UserInformation")
+                        .WithMany("Nationalities")
+                        .HasForeignKey("UserInformationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.OtherInformation", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.User", "User")
+                        .WithOne("OtherInformation")
+                        .HasForeignKey("CvMaker.Entities.Concrete.OtherInformation", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.Reference", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.User", "User")
+                        .WithMany("References")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.UniversityFaculty", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.Faculty", "Faculty")
+                        .WithMany("UniversityFaculties")
+                        .HasForeignKey("FacultyId");
+
+                    b.HasOne("CvMaker.Entities.Concrete.University", "University")
+                        .WithMany("UniversityFaculties")
+                        .HasForeignKey("UniversityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.UserHighschool", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.User", "User")
+                        .WithOne("UserHighschool")
+                        .HasForeignKey("CvMaker.Entities.Concrete.UserHighschool", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.UserInformation", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.User", "User")
+                        .WithOne("UserInformation")
+                        .HasForeignKey("CvMaker.Entities.Concrete.UserInformation", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.UserLanguage", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.Language", "Language")
+                        .WithMany("UserLanguages")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CvMaker.Entities.Concrete.UserLanguageStatus", "UserLanguageStatus")
+                        .WithMany("UserLanguages")
+                        .HasForeignKey("UserLanguageStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.UserLanguageStatus", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.User", "User")
+                        .WithOne("LanguageStatus")
+                        .HasForeignKey("CvMaker.Entities.Concrete.UserLanguageStatus", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CvMaker.Entities.Concrete.UserUniversity", b =>
+                {
+                    b.HasOne("CvMaker.Entities.Concrete.EducationLanguage", "EducationLanguage")
+                        .WithMany("UserUniversities")
+                        .HasForeignKey("EducationLanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CvMaker.Entities.Concrete.User", "User")
+                        .WithMany("UserUniversities")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

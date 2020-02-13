@@ -6,15 +6,18 @@ using System.Text;
 
 namespace CvMaker.Entities.Concrete
 {
-    public class EducationHighSchool:IEntity
+    public class UserHighschool:IEntity
     {
         [Key]
-        public int HighschoolId { get; set; }
+        public int UserHighschoolId { get; set; }
         public string HighschoolName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int HighschoolDegree { get; set; }
+        public double HighschoolDegree { get; set; }
         public string HighschoolDepartment { get; set; }
         public string HighschoolType { get; set; }
+
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
     }
 }
