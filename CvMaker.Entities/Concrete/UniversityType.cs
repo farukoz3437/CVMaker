@@ -9,5 +9,7 @@ namespace CvMaker.Entities.Concrete
     {
         public int UniversityTypeId { get; set; }
         public int UniversityTypeName { get; set; }
+
+        public virtual ICollection<UserUniversity> UserUniversities { get; set; }
     }
 }

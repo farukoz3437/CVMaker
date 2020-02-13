@@ -16,14 +16,18 @@ namespace CvMaker.Entities.Concrete
         public string Title { get; set; }
         public string MaritalStatus { get; set; }
         public string Gender { get; set; }
-        public string PlaceOfBirth { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public string BirthPlace { get; set; }
+        public DateTime BirthDate { get; set; }
         public string DisabilitySituation { get; set; }
+        public string MilitaryStatus { get; set; }
+        public string DischargeDate { get; set; }
+        public string TotalExperience { get; set; }
+        public string WorkState { get; set; }
 
         public int UserId { get; set; }
         public virtual User User { get; set; }
 
-        public virtual ICollection<Nationality> Nationalities { get; set; }
+ 
 
     }
 }

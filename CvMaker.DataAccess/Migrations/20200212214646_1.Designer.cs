@@ -4,14 +4,16 @@ using CvMaker.DataAccess.Concrete.EntityFramework.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CvMaker.DataAccess.Migrations
 {
     [DbContext(typeof(CvMakerContext))]
-    partial class CvMakerContextModelSnapshot : ModelSnapshot
+    [Migration("20200212214646_1")]
+    partial class _1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +31,13 @@ namespace CvMaker.DataAccess.Migrations
                     b.Property<string>("AddressName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DistrictId")
                         .HasColumnType("int");
 
                     b.Property<int>("PostaCode")
@@ -39,8 +47,6 @@ namespace CvMaker.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("AddressId");
-
-                    b.HasIndex("CountryId");
 
                     b.HasIndex("UserId")
                         .IsUnique();
@@ -400,7 +406,8 @@ namespace CvMaker.DataAccess.Migrations
 
                     b.HasKey("ReferenceId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("References");
                 });
@@ -613,11 +620,17 @@ namespace CvMaker.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
                     b.Property<int>("EducationLanguageId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("FacultyId")
+                        .HasColumnType("int");
 
                     b.Property<double>("LisanceDegree")
                         .HasColumnType("float");
@@ -634,8 +647,6 @@ namespace CvMaker.DataAccess.Migrations
                     b.HasKey("UserUniversityId");
 
                     b.HasIndex("EducationLanguageId");
-
-                    b.HasIndex("UniversityId");
 
                     b.HasIndex("UserId");
 
@@ -689,12 +700,6 @@ namespace CvMaker.DataAccess.Migrations
 
             modelBuilder.Entity("CvMaker.Entities.Concrete.Address", b =>
                 {
-                    b.HasOne("CvMaker.Entities.Concrete.Country", "Country")
-                        .WithMany("Addresses")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CvMaker.Entities.Concrete.User", "User")
                         .WithOne("Address")
                         .HasForeignKey("CvMaker.Entities.Concrete.Address", "UserId")
@@ -793,8 +798,8 @@ namespace CvMaker.DataAccess.Migrations
             modelBuilder.Entity("CvMaker.Entities.Concrete.Reference", b =>
                 {
                     b.HasOne("CvMaker.Entities.Concrete.User", "User")
-                        .WithMany("References")
-                        .HasForeignKey("UserId")
+                        .WithOne("Reference")
+                        .HasForeignKey("CvMaker.Entities.Concrete.Reference", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -859,12 +864,6 @@ namespace CvMaker.DataAccess.Migrations
                     b.HasOne("CvMaker.Entities.Concrete.EducationLanguage", "EducationLanguage")
                         .WithMany("UserUniversities")
                         .HasForeignKey("EducationLanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CvMaker.Entities.Concrete.University", "University")
-                        .WithMany("UserUniversities")
-                        .HasForeignKey("UniversityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

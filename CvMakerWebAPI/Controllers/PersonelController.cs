@@ -81,6 +81,7 @@ namespace CvMakerWebAPI.Controllers
         public IActionResult Update(Personel personel)
         {
             var result = _personelService.Update(personel);
+            
             if (result.Success)
             {
                 return Ok(result.Message);

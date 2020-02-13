@@ -16,5 +16,8 @@ namespace CvMaker.Entities.Concrete
         public string Pozition { get; set; }
         public string EPosta { get; set; }
         public int PhoneNumber { get; set; }
+
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
     }
 }

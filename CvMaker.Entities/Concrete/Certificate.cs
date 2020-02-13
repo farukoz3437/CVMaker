@@ -12,7 +12,10 @@ namespace CvMaker.Entities.Concrete
         public int CertificateId { get; set; }
         public string CertificateName { get; set; }
         public DateTime CertificateDate { get; set; }
-        public string FromOrganization { get; set; } //Alındığı kurum
+        public string Organization { get; set; } //Alındığı kurum
         public string Description { get; set; }
+
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -14,5 +14,6 @@ namespace CvMaker.Entities.Concrete
 
         public int FacultyId { get; set; }
         public virtual Faculty Faculty { get; set; }
+
     }
 }
