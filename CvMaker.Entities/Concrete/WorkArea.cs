@@ -11,5 +11,7 @@ namespace CvMaker.Entities.Concrete
         [Key]
         public int WorkAreaId{ get; set; }
         public int WorkAreaName{ get; set; }
+
+        public virtual ICollection<WorkAreaFirmSector> WorkAreaFirmSectors { get; set; }
     }
 }

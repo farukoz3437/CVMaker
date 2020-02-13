@@ -11,5 +11,8 @@ namespace CvMaker.Entities.Concrete
         [Key]
         public int LanguageId { get; set; }
         public string LanguageName { get; set; }
+
+        
+        public UserLanguageStatus UserLanguageStatus { get; set; }
     }
 }

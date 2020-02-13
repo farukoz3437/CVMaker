@@ -12,6 +12,16 @@ namespace CvMaker.Entities.Concrete
         public int EducationUniversityId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int LisanceDegree { get; set; }
+        public double LisanceDegree { get; set; }
+
+        public int UniversityTypeId { get; set; }
+        public int UniversityId { get; set; }
+        public int UserId { get; set; }
+
+        public UniversityType UniversityType { get; set; }
+        public University University { get; set; }
+        public User User { get; set; }
     }
 }
+
+

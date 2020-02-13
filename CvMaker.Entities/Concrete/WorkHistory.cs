@@ -6,12 +6,12 @@ using System.Text;
 
 namespace CvMaker.Entities.Concrete
 {
-    public class WorkInformation:IEntity
+    public class WorkHistory:IEntity
     {
         [Key]
         public int WorkInformationId { get; set; }
         public string TotalExperience { get; set; } //Toplam deneyim
         public string WorkStatus { get; set; } //Çalışma durumu
-        public string MannerOfWork { get; set; } //Çalışma şekli
+        
     }
 }

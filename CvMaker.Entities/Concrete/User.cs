@@ -18,5 +18,8 @@ namespace CvMaker.Entities.Concrete
         public virtual MilitaryState MilitaryState { get; set; }
         public virtual UserInformation UserInformation { get; set; }
         public virtual ICollection<DriverLisance> DriverLisances { get; set; }
+        public virtual ICollection<UserFirm> UserFirms { get; set; }
+        public virtual ICollection<UserLanguageStatus> UserLanguageStatuses { get; set; }
+        public virtual ICollection<EducationUniversity> EducationUniversities { get; set; }
     }
 }

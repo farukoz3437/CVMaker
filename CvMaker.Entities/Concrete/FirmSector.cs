@@ -11,5 +11,10 @@ namespace CvMaker.Entities.Concrete
         [Key]
         public int FirmSectorId { get; set; }
         public string FirmSectorName { get; set; }
+
+        public int UserFirmId { get; set; }
+
+        public UserFirm UserFirm { get; set; }
+        public virtual ICollection<WorkAreaFirmSector> WorkAreaFirmSectors { get; set; }
     }
 }
