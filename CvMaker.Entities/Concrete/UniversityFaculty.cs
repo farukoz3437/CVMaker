@@ -8,6 +8,7 @@ namespace CvMaker.Entities.Concrete
     {
         public int UniversityId { get; set; }
         public University University { get; set; }
+
         public int FacultyId { get; set; }
         public Faculty Faculty { get; set; }
     }

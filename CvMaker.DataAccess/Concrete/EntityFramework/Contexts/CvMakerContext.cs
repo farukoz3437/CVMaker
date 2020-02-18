@@ -18,11 +18,12 @@ namespace CvMaker.DataAccess.Concrete.EntityFramework.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UniversityFaculty>().HasKey(x => new { x.UniversityId, x.DepartmentId });
-            modelBuilder.Entity<NationalityUser>().HasKey(x => new { x.UserId, x.NationalityId });
+            modelBuilder.Entity<UniversityFaculty>().HasKey(x => new { x.UniversityId, x.FacultyId});
+            modelBuilder.Entity<NationalityUser>().HasOne(x => x.User).WithMany(u => u.NationalityUsers).HasForeignKey(u => u.UserId);
+            modelBuilder.Entity<NationalityUser>().HasOne(x => x.Nationality).WithMany(n => n.NationalityUsers).HasForeignKey(n => n.NationalityId);
             modelBuilder.Entity<FirmSectorWorkArea>().HasKey(x => new { x.FirmSectorId, x.WorkAreaId });
-        
-      
+
+           
         }
 
         public DbSet<Personel> Personels { get; set; } //Deneme amaçlı

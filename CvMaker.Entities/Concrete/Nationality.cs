@@ -12,9 +12,6 @@ namespace CvMaker.Entities.Concrete
         public int NationalityId { get; set; }
         public string CountryName { get; set; }
 
-        public int UserInformationId { get; set; }
-        public virtual UserInformation UserInformation { get; set; }
-
-        public ICollection<NationalityUser> NationalityUsers { get; set; }
+        public virtual ICollection<NationalityUser> NationalityUsers { get; set; }
     }
 }

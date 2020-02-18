@@ -36,9 +36,9 @@ namespace CvMaker.Entities.Concrete
 
         public virtual ICollection<UserLanguageStatus> UserLanguageStatuses { get; set; }
 
-        public virtual ICollection<NationalityUser> NationalityUsers { get; set; }
-
         public virtual ICollection<WorkHistory> WorkHistories { get; set; }
+
+        public virtual ICollection<NationalityUser> NationalityUsers { get; set; }
 
     }
 }
