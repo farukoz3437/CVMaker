@@ -13,12 +13,12 @@ namespace CvMaker.DataAccess.Concrete.EntityFramework.Contexts
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionString: @"Data Source=LAPTOP-5KN4USMR;Initial Catalog=CvMaker;Integrated Security=True");
+            optionsBuilder.UseSqlServer(connectionString: "server=MBTERYA017\\SQLSERVER;database=MovieDB;uid=sa;password=BkBk123!");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UniversityFaculty>().HasKey(x => new { x.UniversityId, x.DepartmentId });
+            modelBuilder.Entity<UniversityFaculty>().HasKey(x => new { x.UniversityId, x.FacultyId });
             modelBuilder.Entity<NationalityUser>().HasKey(x => new { x.UserId, x.NationalityId });
             modelBuilder.Entity<FirmSectorWorkArea>().HasKey(x => new { x.FirmSectorId, x.WorkAreaId });
         
